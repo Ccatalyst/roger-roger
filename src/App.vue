@@ -1,8 +1,11 @@
 <template>
-	<header>
-		<h1>Roger Roger</h1>
-		<p>A real-time walkie-talkie style application</p>
-	</header>
+	<div>
+		<header>
+			<h1>Roger Roger</h1>
+			<p>A real-time walkie-talkie style application</p>
+		</header>
+		<router-view> </router-view>
+	</div>
 </template>
 
 <script>
