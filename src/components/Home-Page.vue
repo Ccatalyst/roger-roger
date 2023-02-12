@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<h2>Home</h2>
-		<LoginAnon />
+		<RegistrationPage />
 	</div>
 </template>
 <script>
-import LoginAnon from "./Login-Anonymous.vue";
+import RegistrationPage from "./Registration-Page.vue";
 export default {
 	components: {
-		LoginAnon,
+		RegistrationPage,
 	},
 };
 </script>
