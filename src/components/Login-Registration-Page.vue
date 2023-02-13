@@ -5,6 +5,10 @@
 			<h4>Register for an account</h4>
 			<a href="#" @click="newUser = false">I have an account</a>
 		</section>
+		<section v-else>
+			<h4>Log In</h4>
+			<a href="#" @click="newUser = true">I need to register</a>
+		</section>
 		<label for="email"> Email </label><br />
 		<input type="email" name="email" id="email" v-model="email" />
 		<br />

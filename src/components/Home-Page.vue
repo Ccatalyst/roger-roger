@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<h2>Home</h2>
-		<RegistrationPage />
+		<LoginRegistrationPage />
 	</div>
 </template>
 <script>
-import RegistrationPage from "./Registration-Page.vue";
+import LoginRegistrationPage from "./Login-Registration-Page.vue";
 export default {
 	components: {
-		RegistrationPage,
+		LoginRegistrationPage,
 	},
 };
 </script>
