@@ -10,16 +10,17 @@
 			<a href="#" @click="newUser = true">I need to register</a>
 		</section>
 		<label for="email"> Email </label><br />
-		<input type="email" name="email" id="email" v-model="email" />
+		<input type="email" name="email" placeholder="email" class="email" v-model="email" />
 		<br />
 		<!-- <label for="username">Username </label><br />
 			<input type="text" name="username" id="username" v-model="username" /> -->
 		<label for="password">Password </label><br />
-		<input type="password" name="password" id="password" v-model="password" />
+		<input type="password" name="password" placeholder="password" class="password" v-model="password" />
 		<br />
 		<!-- <label for="confirmPassword">Confirm your password </label><br />
 			<input type="password" name="confirmPassword" id="confirmPassword" v-model="confirmPassword" /> -->
-		<button class="button">Register</button>
+		<button class="button" @click="formSubmit()">Register</button>
+		<p class="has-text-danger" v-if="errorMessage">{{ errorMessage }}</p>
 	</aside>
 </template>
 
@@ -28,7 +29,7 @@ import { useFirebaseAuth } from "vuefire";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "@firebase/auth";
 
 const auth = useFirebaseAuth();
-
+console.log(auth);
 export default {
 	data() {
 		return {
@@ -46,9 +47,9 @@ export default {
 			this.errorMessage = "";
 			try {
 				if (this.newUser) {
-					await createUserWithEmailAndPassword(this.email, this.password);
+					await createUserWithEmailAndPassword(auth, this.email, this.password);
 				} else {
-					await signInWithEmailAndPassword(this.email, this.password);
+					await signInWithEmailAndPassword(auth, this.email, this.password);
 				}
 			} catch (err) {
 				this.errorMessage = err.message;
