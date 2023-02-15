@@ -20,16 +20,17 @@
 		<!-- <label for="confirmPassword">Confirm your password </label><br />
 			<input type="password" name="confirmPassword" id="confirmPassword" v-model="confirmPassword" /> -->
 		<button class="button" @click="formSubmit()">Register</button>
+		<h5>...or Register Anonymously</h5>
+		<button class="button" @click="anonRegister()">Register Anonymously</button>
 		<p class="has-text-danger" v-if="errorMessage">{{ errorMessage }}</p>
 	</aside>
 </template>
 
 <script>
 import { useFirebaseAuth } from "vuefire";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "@firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously } from "@firebase/auth";
 
 const auth = useFirebaseAuth();
-console.log(auth);
 export default {
 	data() {
 		return {
@@ -51,6 +52,15 @@ export default {
 				} else {
 					await signInWithEmailAndPassword(auth, this.email, this.password);
 				}
+			} catch (err) {
+				this.errorMessage = err.message;
+			}
+		},
+		async anonRegister() {
+			this.loading = true;
+			this.errorMessage = "";
+			try {
+				await signInAnonymously(auth);
 			} catch (err) {
 				this.errorMessage = err.message;
 			}
