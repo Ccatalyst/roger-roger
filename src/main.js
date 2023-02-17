@@ -10,10 +10,10 @@ const router = createRouter({
 	routes: [{ path: "/", component: HomePage }],
 });
 const app = createApp(App);
-app.use(router);
 app.use(VueFire, {
 	firebaseApp,
 	modules: [VueFireAuth()],
 });
+app.use(router);
 
 app.mount("#app");

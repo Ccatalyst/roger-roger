@@ -12,8 +12,8 @@
 		<label for="email"> Email </label><br />
 		<input type="email" name="email" placeholder="email" class="email" v-model="email" />
 		<br />
-		<!-- <label for="username">Username </label><br />
-			<input type="text" name="username" id="username" v-model="username" /> -->
+		<label for="username">Username </label><br />
+		<input type="text" name="username" id="username" v-model="username" />
 		<label for="password">Password </label><br />
 		<input type="password" name="password" placeholder="password" class="password" v-model="password" />
 		<br />
@@ -37,6 +37,7 @@ export default {
 			auth,
 			newUser: false,
 			email: "",
+			username: "",
 			password: "",
 			errorMessage: "",
 			loading: false,
@@ -55,6 +56,7 @@ export default {
 			} catch (err) {
 				this.errorMessage = err.message;
 			}
+			this.loading = false;
 		},
 		async anonRegister() {
 			this.loading = true;
@@ -64,6 +66,7 @@ export default {
 			} catch (err) {
 				this.errorMessage = err.message;
 			}
+			this.loading = false;
 		},
 	},
 };

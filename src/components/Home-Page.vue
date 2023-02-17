@@ -4,7 +4,10 @@
 		<UserState>
 			<template v-slot:user="{ user }">
 				<div v-if="user">
-					<UserProfile />
+					<h4>User Profile</h4>
+					<UserProfile :user="user" />
+					<h4>My Chat Rooms</h4>
+					<ChatList :uid="user.id" />
 				</div>
 				<LoginRegistrationPage v-else />
 			</template>
@@ -15,11 +18,13 @@
 import LoginRegistrationPage from "./Login-Registration-Page.vue";
 import UserState from "./User-State.vue";
 import UserProfile from "./User-Profile.vue";
+import ChatList from "./Chat-List.vue";
 export default {
 	components: {
 		LoginRegistrationPage,
 		UserState,
 		UserProfile,
+		ChatList,
 	},
 };
 </script>

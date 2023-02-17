@@ -1,6 +1,6 @@
 <template>
 	<div>
-		Logged in as {{ user }}<br />
+		Logged in as {{ user.uid }}<br />
 		<button @click="signOut()" class="button">Log Out</button>
 	</div>
 </template>

@@ -5,19 +5,19 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import { onAuthStateChanged } from "@firebase/auth";
-import { useFirebaseAuth } from "vuefire";
+import { useFirebaseAuth, useCurrentUser } from "vuefire";
 const auth = useFirebaseAuth();
 export default {
 	setup() {
-		const user = ref(null);
+		const user = useCurrentUser(auth);
 		const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => (user.value = firebaseUser));
 		return {
 			user,
 			unsubscribe,
 		};
 	},
+
 	unmounted() {
 		this.unsubscribe();
 	},
