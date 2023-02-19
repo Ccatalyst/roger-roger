@@ -7,7 +7,7 @@
 					<h4>User Profile</h4>
 					<UserProfile :user="user" />
 					<h4>My Chat Rooms</h4>
-					<ChatList :uid="user.id" />
+					<ChatList :user="user" />
 				</div>
 				<LoginRegistrationPage v-else />
 			</template>

@@ -1,34 +1,50 @@
 <template>
 	<div>
+		<ul>
+			<li v-for="chat of chatlist" :key="chat.id">
+				<router-link to="{ name: 'chat', params: { id: chat.id} }">{{ chat.id }}</router-link>
+			</li>
+		</ul>
+
 		<button @click="createChatRoom()" class="button">Create Chat Room</button>
 	</div>
 </template>
 
 <script>
 import { db } from "../firebase";
-import { collection } from "@firebase/firestore";
+import { useCollection } from "vuefire";
+import { collection, addDoc } from "firebase/firestore";
 
 export default {
+	setup() {
+		const chats = useCollection(collection(db, "chats"));
+		return { chats };
+	},
 	data() {
 		return {
-			chats: [],
+			chatlist: [],
 		};
 	},
-	firestore() {
+	firestore(chats) {
 		return {
-			chats: collection(db, "chats").where("owner", "==", this.uid),
+			chatlist: chats.where("owner", "==", this.user.uid),
 		};
 	},
 	methods: {
-		async createChatRoom() {
-			const newChat = await collection(db, "chats").add({
-				createdAt: Date.now(),
-				owner: this.uid,
-				members: [this.uid],
-			});
-			console.log(newChat);
+		async createChatRoom(chats) {
+			try {
+				const newChat = await addDoc(chats, {
+					createdAt: Date.now(),
+					owner: this.user.id,
+					members: [this.user.id],
+				});
+
+				console.log(newChat);
+			} catch (error) {
+				console.log(error);
+			}
 		},
 	},
-	props: ["uid"],
+	props: ["user"],
 };
 </script>
