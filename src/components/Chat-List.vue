@@ -22,9 +22,6 @@ const props = defineProps({
 });
 const mychats = chats.data.value.filter((chat) => chat.owner == props.uid);
 console.log(mychats);
-// let chatlist = chats.filter((chat) => {
-// 	return chat.owner == this.uid;
-// });
 
 async function createChatRoom() {
 	try {
