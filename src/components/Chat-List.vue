@@ -2,7 +2,8 @@
 	<div>
 		<ul>
 			<li v-for="chat of mychats" :key="chat.id">
-				<router-link to="{ name: 'chat', params: { id: chat.id} }">{{ chat.id }}</router-link>
+				<p>{{ chat.id }}</p>
+				<!-- <router-link to="{ name: 'chat', params: { id: chat.id} }">{{ chat.id }}</router-link> -->
 			</li>
 		</ul>
 

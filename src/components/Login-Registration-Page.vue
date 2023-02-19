@@ -3,25 +3,32 @@
 		<h3>Sign in/Register</h3>
 		<section v-if="newUser">
 			<h4>Register for an account</h4>
-			<a href="#" @click="newUser = false">I have an account</a>
+			<a href="#" @click="newUser = false">I have an account</a><br />
+			<label for="email"> Email </label><br />
+			<input type="email" name="email" placeholder="email" class="email" v-model="email" />
+			<br />
+			<label for="username">Username </label><br />
+			<input type="text" name="username" id="username" placeholder="username" v-model="username" /><br />
+			<label for="password">Password </label><br />
+			<input type="password" name="password" placeholder="password" class="password" v-model="password" />
+			<br />
+			<button class="button" @click="formSubmit()">Register</button>
+			<h5>...or Register Anonymously</h5>
+			<button class="button" @click="anonRegister()">Register Anonymously</button>
 		</section>
 		<section v-else>
 			<h4>Log In</h4>
-			<a href="#" @click="newUser = true">I need to register</a>
+			<a href="#" @click="newUser = true">I need to register</a><br />
+			<label for="email"> Email </label><br />
+			<input type="email" name="email" placeholder="email" class="email" v-model="email" />
+			<br />
+
+			<label for="password">Password </label><br />
+			<input type="password" name="password" placeholder="password" class="password" v-model="password" />
+			<br />
+			<button class="button" @click="formSubmit()">Log In</button>
 		</section>
-		<label for="email"> Email </label><br />
-		<input type="email" name="email" placeholder="email" class="email" v-model="email" />
-		<br />
-		<label for="username">Username </label><br />
-		<input type="text" name="username" id="username" v-model="username" />
-		<label for="password">Password </label><br />
-		<input type="password" name="password" placeholder="password" class="password" v-model="password" />
-		<br />
-		<!-- <label for="confirmPassword">Confirm your password </label><br />
-			<input type="password" name="confirmPassword" id="confirmPassword" v-model="confirmPassword" /> -->
-		<button class="button" @click="formSubmit()">Register</button>
-		<h5>...or Register Anonymously</h5>
-		<button class="button" @click="anonRegister()">Register Anonymously</button>
+
 		<p class="has-text-danger" v-if="errorMessage">{{ errorMessage }}</p>
 	</aside>
 </template>
